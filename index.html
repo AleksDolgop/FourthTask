@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Задание 4</title>
+    <style>
+        .wrapper{
+            padding: 2%;
+        }
+
+        .clearfix{
+            clear:both;
+        }
+
+        #chess-board{
+            width: 30%;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid gray;
+            padding: 0.5em;
+            min-width: 33em;
+        }
+
+        #chess-board .grid{
+            width: 90%;
+            float:left;
+        }
+    
+        #chess-board .grid .cell{
+            width: 11.95%;
+            border: 1px solid #dadada;
+            height: 3.45em;
+            float:left;
+            margin: -1px -1px 0 0;
+        }
+
+        /*Шахматная доска. Стиль через ж...*/
+        #chess-board .grid .cell:nth-child(-n+8):nth-child(even),
+        #chess-board .grid .cell:nth-child(n+9):nth-child(-n+16):nth-child(odd),
+        #chess-board .grid .cell:nth-child(n+17):nth-child(-n+24):nth-child(even),
+        #chess-board .grid .cell:nth-child(n+25):nth-child(-n+32):nth-child(odd),
+        #chess-board .grid .cell:nth-child(n+33):nth-child(-n+40):nth-child(even),
+        #chess-board .grid .cell:nth-child(n+41):nth-child(-n+48):nth-child(odd),
+        #chess-board .grid .cell:nth-child(n+49):nth-child(-n+56):nth-child(even),
+        #chess-board .grid .cell:nth-child(n+57):nth-child(-n+64):nth-child(odd){
+            background-color :black;
+        }
+
+        #chess-board .up-symbol p, #chess-board .left-symbol p, #chess-board .right-symbol p, #chess-board .bottom-symbol p{
+            text-align: center;       
+            line-height: 1em;
+            color: gray;
+            font-weight: bold;
+            font-family:Georgia, 'Times New Roman', Times, serif;
+        }
+
+        #chess-board .left-symbol, #chess-board .right-symbol{
+            width: 5%;       
+            float: left;   
+            display: block;
+            margin: 0;       
+        }
+
+        #chess-board .left-symbol p, #chess-board .right-symbol p{
+            width: 1.5em;
+            margin: 0;
+            line-height: 3.6em;
+        }
+
+        #chess-board .up-symbol, #chess-board .bottom-symbol{
+            height: 1.8em;     
+            width: 100%;      
+            margin-left: 5%; 
+        }
+
+        #chess-board .up-symbol p, #chess-board .bottom-symbol p{      
+            width: 10.95%;
+            line-height: 1.5em;
+            margin: 0;
+            float: left;
+        }
+
+    </style>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div id="chess-board">
+            <div class="top">
+                    <div class="up-symbol">
+                        <p v-for='i in 8'>{{String.fromCharCode(65 + (i - 1))}}</p>    
+                        <div class="clearfix"></div>             
+                    </div>
+            </div>
+            <div class="mid">
+                    <div class="left-symbol">
+                        <p v-for='i in 8'>{{9 - i}}</p>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="grid">
+                        <div v-for="i in 64" class="cell" :ref='String(i)' @click="cellClick({i})" ></div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="right-symbol">
+                        <p v-for='i in 8'>{{9 - i}}</p>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+            </div>
+            <div class="bot">
+                    <div class="bottom-symbol">
+                        <p v-for='i in 8'>{{String.fromCharCode(65 + (i - 1))}}</p>
+                        <div class="clearfix"></div>
+                    </div>
+            </div>            
+        </div>
+    </div>
+    <script src='js/common.js'></script>
+</body>
+</html>
